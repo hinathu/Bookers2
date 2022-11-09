@@ -1,0 +1,9 @@
+<!--投稿時エラーメッセージ-->
+ <% if model.errors.any? %>
+     <%= model.errors.count %> errors prohibited this obj from being saved:
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>

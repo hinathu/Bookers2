@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--ユーザー名_部分テンプレート(_user)-->
+      <%= render 'users/user', user: @user %>
+
+      <!--投稿エラーメッセージ_部分テンプレート(_error)-->
+      <%= render 'layouts/error', model: @newbook %>
+
+      <!--新規投稿_部分テンプレート(_book)-->
+      <%= render 'book', newbook: @newbook %>
+    </div>
+
+     <!--投稿したbook-->
+      <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <%= image_tag @user.get_profile_image(50,50) %> </br>
+                <%= link_to user_path(@user.id) do %>
+                  <%= @user.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(@book.id) do %>
+                  <%= @book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= @book.body %>
+              </td>
+              <% if @book.user == current_user %>
+                <td>
+                  <%= link_to "Edit", edit_book_path(@book), class:"btn btn-success btn-block" %>
+                </td>
+                <td>
+                  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？", class:"btn btn-danger" %>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

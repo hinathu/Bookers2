@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--ユーザー名_部分テンプレート(_user)-->
+      <%= render 'user', user: @user %>
+
+      <!--投稿エラーメッセージ_部分テンプレート(_error)-->
+      <%= render 'layouts/error', model: @newbook %>
+
+      <!--新規投稿_部分テンプレート(_book)-->
+      <%= render 'books/book', newbook: @newbook %>
+    </div>
+
+      <!--登録者の投稿一覧-->
+      <div class="col-md-8 offset-md-1">
+        <h2>Books</h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @books.each do |book| %>
+            <tr>
+              <td>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag @user.get_profile_image(50,50) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="row text-center">
+          <%= paginate @books %>
+        </div>
+      </div>
+  </div>
+</div>
+

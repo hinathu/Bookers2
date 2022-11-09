@@ -1,0 +1,21 @@
+<!--新規投稿の部分テンプレート-->
+
+  <div class="container px-5 px-sm-0">
+    <div class="row-md-1">
+      <h2>New book</h2>
+    </div>
+
+    <div class="row">
+      <%= form_with model: newbook do |f| %>
+      <div class="row-md-1">
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+      </div>
+      <div class="row-md-1">
+        <h4>Opinion</h4>
+        <%= f.text_area :body %>
+      </div>
+      <%= f.submit 'Create Book', class:"btn btn-success btn-block border"%>
+      <% end %>
+    </div>
+  </div>
